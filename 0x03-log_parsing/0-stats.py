@@ -6,6 +6,7 @@ Log parsing
 import sys
 import re
 
+
 def print_stats(stats: dict, file_size: int) -> None:
     """Print the accumulated statistics."""
     print("File size: {}".format(file_size))
@@ -13,15 +14,18 @@ def print_stats(stats: dict, file_size: int) -> None:
         if stats[code] > 0:
             print("{}: {}".format(code, stats[code]))
 
+
 if __name__ == '__main__':
     # Regular expression for parsing the log lines
     regex = re.compile(
-        r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(.*?)\] "GET /projects/260 HTTP/1.1" (\d{3}) (\d+)'
+        r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[(.*?)\] '
+        r'"GET /projects/260 HTTP/1.1" (\d{3}) (\d+)'
     )
 
     line_count = 0
     file_size = 0
-    stats = {code: 0 for code in ["200", "301", "400", "401", "403", "404", "405", "500"]}
+    stats = {code: 0 for code in ["200", "301", "400", "401", "403",
+                                  "404", "405", "500"]}
 
     try:
         for line in sys.stdin:
