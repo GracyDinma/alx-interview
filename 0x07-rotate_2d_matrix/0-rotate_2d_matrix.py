@@ -4,6 +4,17 @@
 """
 
 
+class PrintableMatrix(list):
+    """
+    Custom list class to modify the print behavior of the entire matrix.
+    Args: list - number to be revised.
+          matrix(type)
+    """
+
+    def __repr__(self):
+        return "\n".join(str(row) for row in self)
+
+
 def rotate_2d_matrix(matrix):
     """
     Rotate a 2D matrix 90 degrees clockwise in place.
@@ -18,7 +29,3 @@ def rotate_2d_matrix(matrix):
     """ Reverse each row."""
     for row in matrix:
         row.reverse()
-
-    # Print each row of the rotated matrix
-    for row in matrix:
-        print(row)
