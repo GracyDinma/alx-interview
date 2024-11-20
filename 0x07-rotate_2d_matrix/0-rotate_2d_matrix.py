@@ -2,12 +2,6 @@
 """
 2D matrix that rotate 90 degree clockwise in-place
 """
-class PrintableMatrix(list):
-    """
-    Custom list class to modify the print behavior of the entire matrix.
-    """
-    def __repr__(self):
-        return "\n".join(str(row) for row in self)
 
 
 def rotate_2d_matrix(matrix):
