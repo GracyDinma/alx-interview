@@ -19,14 +19,11 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Initialize a list to store the fewest coin
-    dp = [float('inf')] * (total + 1)
-    dp[0] = 0
-
-    # Iterate through each coin demoniation
+    coins.sort(reverse=True)
+    count = 0
     for coin in coins:
-        for amount in range(coin, total + 1):
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
-
-    # if dp[total] is still inf, the total cannot be met
-    return dp[total] if dp[total] != float('inf') else -1
+        if total == 0:
+            break
+        count += total // coin
+        total %= coin
+    return count if total == 0 else -1
